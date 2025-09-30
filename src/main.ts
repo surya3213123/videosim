@@ -1,29 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './app/components/header.component';
-import { VideoInputComponent } from './app/components/video-input.component';
-import { SimulationGenerationComponent } from './app/components/simulation-generation.component';
-import { SimulationService } from './app/services/simulation.service';
-import { SimulationState } from './app/models/simulation.model';
+import { provideRouter } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
+import { routes } from './app/app.routes';
+import { HeaderComponent } from './app/components/header/header.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    CommonModule,
-    HeaderComponent,
-    VideoInputComponent,
-    SimulationGenerationComponent
-  ],
+  imports: [RouterOutlet, HeaderComponent],
   template: `
     <div class="app">
       <app-header></app-header>
-      
-      <main class="main-content">
-        <app-video-input *ngIf="!hasSelectedVideo"></app-video-input>
-        <app-simulation-generation *ngIf="hasSelectedVideo"></app-simulation-generation>
-      </main>
+      <router-outlet></router-outlet>
       
       <!-- Background Elements -->
       <div class="bg-elements">
@@ -38,11 +27,6 @@ import { SimulationState } from './app/models/simulation.model';
       min-height: 100vh;
       position: relative;
       overflow-x: hidden;
-    }
-
-    .main-content {
-      position: relative;
-      z-index: 1;
     }
 
     .bg-elements {
@@ -89,37 +73,19 @@ import { SimulationState } from './app/models/simulation.model';
     }
 
     @keyframes gridMove {
-      0% {
-        transform: translate(0, 0);
-      }
-      100% {
-        transform: translate(50px, 50px);
-      }
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
     }
 
     @keyframes float {
-      0%, 100% {
-        transform: translate(0, 0) rotate(0deg);
-      }
-      33% {
-        transform: translate(30px, -30px) rotate(1deg);
-      }
-      66% {
-        transform: translate(-20px, 20px) rotate(-1deg);
-      }
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      33% { transform: translate(30px, -30px) rotate(1deg); }
+      66% { transform: translate(-20px, 20px) rotate(-1deg); }
     }
   `]
 })
-export class App implements OnInit {
-  hasSelectedVideo = false;
+export class App {}
 
-  constructor(private simulationService: SimulationService) {}
-
-  ngOnInit(): void {
-    this.simulationService.state$.subscribe((state: SimulationState) => {
-      this.hasSelectedVideo = !!state.selectedVideo;
-    });
-  }
-}
-
-bootstrapApplication(App).catch(err => console.error(err));
+bootstrapApplication(App, {
+  providers: [provideRouter(routes)]
+}).catch(err => console.error(err));

@@ -1,0 +1,10 @@
+.video-simulation-page {
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+.input-section,
+.generation-section {
+  width: 100%;
+}

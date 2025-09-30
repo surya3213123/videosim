@@ -1,0 +1,108 @@
+.nl-simulation-page {
+  min-height: 100vh;
+  padding: 120px 0 80px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-section {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  color: #f8fafc;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: #94a3b8;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.nl-input-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 24px;
+}
+
+.input-container {
+  
+}
+
+.nl-textarea {
+  width: 100%;
+  background: rgba(15, 23, 42, 0.8);
+  border: 2px solid rgba(148, 163, 184, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  color: #e2e8f0;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.6;
+  resize: vertical;
+  min-height: 200px;
+  transition: border-color 0.3s ease;
+}
+
+.nl-textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.nl-textarea::placeholder {
+  color: #64748b;
+}
+
+.input-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.generation-section {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .nl-input-section {
+    padding: 24px;
+  }
+  
+  .input-actions {
+    flex-direction: column;
+  }
+  
+  .input-actions .btn {
+    width: 100%;
+  }
+}

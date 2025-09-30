@@ -1,0 +1,115 @@
+<div class="video-input-container">
+  <!-- Hero Section -->
+  <div class="hero-section fade-in">
+    <h1 class="hero-title">
+      Transform Your <span class="gradient-text">ADAS Videos</span> 
+      <br>Into Simulation Scenarios
+    </h1>
+    <p class="hero-subtitle">
+      Upload your driving videos or choose from our curated scenarios to generate 
+      OpenSCENARIO and OpenDRIVE files for ADAS development and testing.
+    </p>
+  </div>
+
+  <!-- Upload Section -->
+  <div class="upload-section card-glass fade-in">
+    <h2 class="section-title">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7,10 12,15 17,10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Upload Your Video
+    </h2>
+    
+    <div class="upload-area" 
+         (dragover)="onDragOver($event)" 
+         (dragleave)="onDragLeave($event)"
+         (drop)="onDrop($event)"
+         [class.drag-over]="isDragOver">
+      <input type="file" 
+             #fileInput 
+             (change)="onFileSelected($event)" 
+             accept="video/*" 
+             style="display: none;">
+      
+      <div class="upload-content">
+        <div class="upload-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21,15 16,10 5,21"/>
+          </svg>
+        </div>
+        <h3>Drop your video here or click to browse</h3>
+        <p>Supports MP4, AVI, MOV files up to 100MB</p>
+        <button class="btn btn-outline" (click)="fileInput.click()">
+          Choose File
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="selectedFile" class="selected-file">
+      <div class="file-info">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+        </svg>
+        <span>{{ selectedFile.name }}</span>
+        <span class="file-size">({{ formatFileSize(selectedFile.size) }})</span>
+      </div>
+      <button class="btn btn-primary" (click)="processUploadedVideo()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="5,3 19,12 5,21 5,3"/>
+        </svg>
+        Generate Simulation
+      </button>
+    </div>
+  </div>
+
+  <!-- Default Scenarios -->
+  <div class="scenarios-section fade-in">
+    <h2 class="section-title">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+        <line x1="8" y1="21" x2="16" y2="21"/>
+        <line x1="12" y1="17" x2="12" y2="21"/>
+      </svg>
+      Example Scenarios
+    </h2>
+    <p class="section-subtitle">
+      Choose from our pre-built scenarios to quickly explore the simulation generation pipeline
+    </p>
+
+    <div class="scenarios-grid">
+      <div *ngFor="let scenario of defaultScenarios; let i = index" 
+           class="scenario-card card slide-in"
+           [style.animation-delay]="(i * 0.1) + 's'">
+        <div class="scenario-thumbnail">
+          <img [src]="scenario.thumbnailUrl" [alt]="scenario.title">
+          <div class="scenario-overlay">
+            <div class="scenario-duration">{{ scenario.duration }}</div>
+            <div class="scenario-complexity" [class]="'complexity-' + scenario.complexity.toLowerCase()">
+              {{ scenario.complexity }}
+            </div>
+          </div>
+        </div>
+        
+        <div class="scenario-content">
+          <h3 class="scenario-title">{{ scenario.title }}</h3>
+          <p class="scenario-description">{{ scenario.description }}</p>
+          
+          <div class="scenario-tags">
+            <span *ngFor="let tag of scenario.tags" class="tag">{{ tag }}</span>
+          </div>
+          
+          <button class="btn btn-primary scenario-btn" (click)="selectScenario(scenario)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="5,3 19,12 5,21 5,3"/>
+            </svg>
+            Use This Scenario
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

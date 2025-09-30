@@ -1,0 +1,27 @@
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <div class="logo" routerLink="/">
+        <div class="logo-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 7V5a2 2 0 0 1 2-2h2"/>
+            <path d="M17 3h2a2 2 0 0 1 2 2v2"/>
+            <path d="M21 17v2a2 2 0 0 1-2 2h-2"/>
+            <path d="M7 21H5a2 2 0 0 1-2-2v-2"/>
+            <rect x="7" y="7" width="10" height="10" rx="1"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <h2>ADAS SimGen</h2>
+          <span class="logo-subtitle">AI-Powered Simulation</span>
+        </div>
+      </div>
+      
+      <div class="nav-links">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">Home</a>
+        <a routerLink="/video-simulation" routerLinkActive="active" class="nav-link">Video to Sim</a>
+        <a routerLink="/nl-simulation" routerLinkActive="active" class="nav-link">Text to Sim</a>
+      </div>
+    </nav>
+  </div>
+</header>

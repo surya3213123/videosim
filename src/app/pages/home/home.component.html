@@ -1,0 +1,129 @@
+<div class="home-page">
+  <div class="container">
+    <!-- Hero Section -->
+    <div class="hero-section fade-in">
+      <h1 class="hero-title">
+        Transform Your Ideas Into <span class="gradient-text">ADAS Simulations</span>
+      </h1>
+      <p class="hero-subtitle">
+        Generate OpenSCENARIO and OpenDRIVE files from videos or natural language descriptions 
+        using advanced AI technology for autonomous driving development.
+      </p>
+    </div>
+
+    <!-- Input Options -->
+    <div class="input-options fade-in">
+      <div class="option-card card-glass" (click)="navigateToVideoSim()">
+        <div class="option-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polygon points="23,7 16,12 23,17 23,7"/>
+            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+          </svg>
+        </div>
+        <h3>Video to Simulation</h3>
+        <p>Upload driving videos and convert them into structured simulation scenarios</p>
+        <div class="option-features">
+          <span class="feature">• AI Video Analysis</span>
+          <span class="feature">• Automatic Scene Detection</span>
+          <span class="feature">• Multi-vehicle Tracking</span>
+        </div>
+        <button class="btn btn-primary option-btn">
+          Start with Video
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="option-card card-glass" (click)="navigateToNlSim()">
+        <div class="option-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14,2 14,8 20,8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+        </div>
+        <h3>Text to Simulation</h3>
+        <p>Describe your scenario in natural language and generate simulation files</p>
+        <div class="option-features">
+          <span class="feature">• Natural Language Processing</span>
+          <span class="feature">• Smart Scenario Generation</span>
+          <span class="feature">• Contextual Understanding</span>
+        </div>
+        <button class="btn btn-primary option-btn">
+          Start with Text
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Default Prompts for NL -->
+    <div class="prompts-section fade-in">
+      <h2 class="section-title">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 11H1l6-6 6 6z"/>
+          <path d="M9 13h12l-6 6-6-6z"/>
+        </svg>
+        Quick Start Prompts
+      </h2>
+      <p class="section-subtitle">
+        Try these example scenarios to quickly explore text-to-simulation generation
+      </p>
+
+      <div class="prompts-grid">
+        <div *ngFor="let prompt of defaultPrompts; let i = index" 
+             class="prompt-card card slide-in"
+             [style.animation-delay]="(i * 0.1) + 's'"
+             (click)="usePrompt(prompt)">
+          <div class="prompt-category">{{ prompt.category }}</div>
+          <h4 class="prompt-title">{{ prompt.title }}</h4>
+          <p class="prompt-description">{{ prompt.description }}</p>
+          <div class="prompt-tags">
+            <span *ngFor="let tag of prompt.tags" class="tag">{{ tag }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="features-section fade-in">
+      <h2 class="section-title">Why Choose ADAS SimGen?</h2>
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 12l2 2 4-4"/>
+              <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"/>
+              <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"/>
+              <path d="M3 12h6m6 0h6"/>
+            </svg>
+          </div>
+          <h4>AI-Powered Analysis</h4>
+          <p>Advanced computer vision and NLP algorithms for accurate scenario extraction</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
+            </svg>
+          </div>
+          <h4>Industry Standards</h4>
+          <p>Generate OpenSCENARIO and OpenDRIVE files compatible with major simulation tools</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12,6 12,12 16,14"/>
+            </svg>
+          </div>
+          <h4>Fast Generation</h4>
+          <p>Convert videos or text descriptions to simulation files in minutes, not hours</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

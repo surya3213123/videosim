@@ -1,0 +1,13 @@
+<div class="video-simulation-page">
+  <div class="container">
+    <!-- Video Input Section -->
+    <div class="input-section" *ngIf="!hasSelectedVideo">
+      <app-video-input></app-video-input>
+    </div>
+
+    <!-- Simulation Generation Section -->
+    <div class="generation-section" *ngIf="hasSelectedVideo">
+      <app-simulation-generation></app-simulation-generation>
+    </div>
+  </div>
+</div>

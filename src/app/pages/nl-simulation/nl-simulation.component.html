@@ -1,0 +1,58 @@
+<div class="nl-simulation-page">
+  <div class="container">
+    <!-- NL Input Section -->
+    <div class="input-section" *ngIf="!hasSelectedPrompt">
+      <div class="hero-section fade-in">
+        <h1 class="hero-title">
+          Describe Your <span class="gradient-text">Driving Scenario</span>
+        </h1>
+        <p class="hero-subtitle">
+          Use natural language to describe your ADAS testing scenario. 
+          Our AI will generate the corresponding simulation files.
+        </p>
+      </div>
+
+      <div class="nl-input-section card-glass fade-in">
+        <h2 class="section-title">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14,2 14,8 20,8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+          Scenario Description
+        </h2>
+        
+        <div class="input-container">
+          <textarea 
+            class="nl-textarea"
+            [(ngModel)]="scenarioText"
+            placeholder="Describe your driving scenario in detail. For example: 'Create a scenario where a vehicle is driving on a highway at 80 km/h and needs to perform an emergency brake when a pedestrian suddenly appears 50 meters ahead...'"
+            rows="8">
+          </textarea>
+          
+          <div class="input-actions">
+            <button class="btn btn-secondary" (click)="clearText()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="3,6 5,6 21,6"/>
+                <path d="M19,6V20A2,2 0 0,1 17,20H7A2,2 0 0,1 5,20V6M8,6V4A2,2 0 0,1 10,4H14A2,2 0 0,1 16,4V6"/>
+              </svg>
+              Clear
+            </button>
+            <button class="btn btn-primary" (click)="generateFromText()" [disabled]="!scenarioText.trim()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="5,3 19,12 5,21 5,3"/>
+              </svg>
+              Generate Simulation
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Simulation Generation Section -->
+    <div class="generation-section" *ngIf="hasSelectedPrompt">
+      <app-simulation-generation></app-simulation-generation>
+    </div>
+  </div>
+</div>
